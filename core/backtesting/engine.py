@@ -1,0 +1,1 @@
+# Engine that execute a backtest (data + strategy = results)

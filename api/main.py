@@ -1,0 +1,1 @@
+# Entry point of the application, regroup all the routes
