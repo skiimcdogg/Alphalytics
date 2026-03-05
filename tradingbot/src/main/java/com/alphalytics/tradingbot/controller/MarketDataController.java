@@ -1,25 +1,27 @@
 package com.alphalytics.tradingbot.controller;
 
-import com.alphalytics.tradingbot.dto.StockData;
-import com.alphalytics.tradingbot.service.MarketDataService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.alphalytics.tradingbot.dto.StockData;
+import com.alphalytics.tradingbot.service.MarketDataService;
+
 @RestController
 @RequestMapping("/api/v1/market-data")
-@RequiredArgsConstructor
 public class MarketDataController {
     
     private final MarketDataService marketDataService;
     
-    /**
-     * Test endpoint pour récupérer des données historiques
-     * GET /api/v1/market-data?symbol=AAPL&startDate=2023-01-01&endDate=2023-12-31
-     */
+    public MarketDataController(MarketDataService marketDataService) {
+        this.marketDataService = marketDataService;
+    }
+    
     @GetMapping
     public ResponseEntity<List<StockData>> getMarketData(
             @RequestParam String symbol,
